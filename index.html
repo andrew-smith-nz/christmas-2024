@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew's Christmas Tree Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #tree {
+            white-space: pre;
+            font-family: monospace;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Andrew's Christmas Tree Generator</h1>
+    <form id="treeForm">
+        <label for="treeHeight">Enter height of tree:</label>
+        <input type="number" id="treeHeight" name="treeHeight" min="1" required>
+        <button type="submit">Generate</button>
+    </form>
+    <div id="tree"></div>
+
+    <script>
+        document.getElementById('treeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const height = parseInt(document.getElementById('treeHeight').value);
+            const treeContainer = document.getElementById('tree');
+            treeContainer.textContent = generateChristmasTree(height);
+        });
+
+        function generateChristmasTree(height) {
+            let tree = '';
+            for (let i = 0; i < height; i++) {
+                const spaces = ' '.repeat(height - i - 1);
+                const stars = '*'.repeat(2 * i + 1);
+                tree += spaces + stars + '\n';
+            }
+            tree += ' '.repeat(height - 1) + '|\n'; // Add tree trunk
+            return tree;
+        }
+    </script>
+</body>
+</html>
